@@ -26,7 +26,7 @@ get2 <- function(x, envir) {
 assign2 <- function(x, value, env) {
   checkmate::assert_character(x, len = 1, all.missing = FALSE, null.ok = FALSE)
   checkmate::assert_environment(env)
-  eval(substitute(x <- value, list(x = as.name(x), value = value)), envir  = env)
+  eval(substitute(x <- value, list(x = as.name(x), value = value)), envir = env)
 }
 
 
@@ -43,7 +43,16 @@ formals(g)$y <- 10
 formals(g)
 g(5)
 
+
 # Aufgabe 4
+find_terms_in_interactions <- function(form) {
+  checkmate::assert_formula(form)
+  formula_terms <- terms(form)
+  labels <- attr(formula_terms, which = "term.labels")
+  interaction_terms <- grep(labels, pattern = ":", value = TRUE)
+  interaction_vars <- unique(unlist(strsplit(interaction_terms, split = ":")))
+  sort(interaction_vars) 
+}
 
 
 

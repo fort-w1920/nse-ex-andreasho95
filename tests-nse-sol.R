@@ -32,3 +32,15 @@ test_that("assign2 works correctly", {
   assign2("test_var2", "x", test_env)
   expect_equal("x", test_env$test_var2)
 })
+
+
+
+context("Function find_terms_in_interactions")
+
+test_that("find_terms_in_interactions works correctly", {
+  interaction_vars <- find_terms_in_interactions(
+    a ~ 1 + a + b * c + poly(d, 3) + (g + h)^2 + e:f:b:fnargl
+  )
+  expect_equal(interaction_vars, c( "b", "c", "e", "f", "fnargl", "g", "h"))
+})
+
