@@ -1,4 +1,4 @@
-
+# Aufgabe 1)
 get2 <- function(x, envir) {
   checkmate::assert_character(x, len = 1, all.missing = FALSE, null.ok = FALSE)
   checkmate::assert_environment(envir)
@@ -22,11 +22,29 @@ get2 <- function(x, envir) {
 }
 
 
-
-
+# Aufgabe 2)
 assign2 <- function(x, value, env) {
   checkmate::assert_character(x, len = 1, all.missing = FALSE, null.ok = FALSE)
   checkmate::assert_environment(env)
   eval(substitute(x <- value, list(x = as.name(x), value = value)), envir  = env)
 }
+
+
+# Aufgabe 3
+g <- function(x = 20, y) {
+  x + y
+}
+
+formals(g)
+
+formals(g)$x <- rlang::missing_arg()
+formals(g)$y <- 10
+
+formals(g)
+g(5)
+
+# Aufgabe 4
+
+
+
 
